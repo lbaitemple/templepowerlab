@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  app:
+    build: .
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./app:/app
+    ports:
+      - "80:80"

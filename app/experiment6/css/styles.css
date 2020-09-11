@@ -1,0 +1,483 @@
+
+* {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+#loader,#loader_2,#loader_1{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgb(255,255,255);
+    z-index:100000;
+}
+.loader-text {
+    position:absolute;
+    top:40%;
+    left:50%;
+    margin-left: -80px;
+    font-size:2em;
+}
+button:disabled {
+    opacity: .4;
+}
+#container,#container_a,#container_b{
+    width: 100%;
+    margin:0;
+    text-align:center;
+}
+.turbine-generator-wrap {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+}
+#turbine,#turbine_a,#turbine_b{
+    display:inline-block;
+    width: 200px;
+    padding: 10px;
+    text-align:left;
+    vertical-align: bottom;
+    white-space: normal;
+}
+.turbine-title {
+    text-align:center;
+    margin-bottom: 12px;
+}
+.turbine-buttons-wrap {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.turbine-button {
+    width: 52px;
+    height: 52px;
+    margin: 0 8px;
+    padding:0;
+}
+.turbine-speed-indicator {
+    display: block;
+    height: 26px;
+    width: 130px;
+    margin: 12px auto 0 auto;
+    font-size: .8em;
+    line-height: 2.1em;
+    text-align: center;
+    border: thin solid #757575;
+}
+#generatorWrap,#generatorWrap_1,#generatorWrap_2 {
+    white-space: normal;
+    position: relative;
+    display: inline-block;
+    height: 346px;
+    width: 480px;
+    min-width: 480px;
+    overflow: hidden;
+}
+#generatorCanvas,#generatorCanvas_1,#generatorCanvas_2{
+    display:inline-block;
+    /*margin: -75px 0 0 0;
+    -webkit-transform: scale(.7);
+    -moz-transform: scale(.7);
+    -ms-transform: scale(.7);
+        transform: scale(.7);*/
+}
+#generatorControls{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display:inline-block;
+    width: 119px;
+    /*margin-left: -50px;
+    margin-top: 188px;
+    vertical-align: top;*/
+}
+.generator_button {
+    display: inline-block;
+        display:none;
+    padding: 12px 18px 10px 18px;
+    margin: 12px;
+    font-size: 1.4em;
+    text-align: center;
+}
+.generator_button.minus {
+    padding: 12px 21px 10px 21px;
+}
+.gen-current-indicator {
+    display: block;
+        display:none;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.component, .circuit-connection, .close-x{
+    background: url('../images/circuit/components.png') no-repeat;
+    background-size: 680px 274px;
+    background-position: 100px 100px;
+}
+
+.components-window-wrap {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .75);
+    width: 100%;
+    text-align:center;
+    z-index: 100;
+}
+.close-x {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    margin-top: -18px;
+    margin-right: -16px;
+    background-position: -229px -121px;
+    cursor: pointer;
+}
+.components-window {
+    position: relative;
+    display: inline-block;
+    width: 340px;
+    padding-bottom: 16px;
+    background-color: #fff;
+    box-shadow: 3px 5px 6px rgba(0,0,0,.5);
+}
+.components-window.varsistor {
+    width: auto;
+}
+.components-window-heading {
+    display: block;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:1.1em;
+    font-weight: 600;
+    padding: 14px 0;
+    background: #9EB9DB;
+}
+.component {
+    display: none;
+    width: 84px;
+    height: 80px;
+    margin: 16px 30px 16px 30px;
+    vertical-align: top;
+    font-size: .8em;
+    cursor: pointer;
+}
+
+.component.wire {
+    margin-top: 22px;
+}
+.component-text {
+    display: inline-block;
+}
+.component-text.meter {
+    padding-top: 78px;
+}
+.component-text.wire {
+    padding-top: 50px;
+}
+.component-text.resistor {
+    padding-top: 60px;
+}
+
+.component-option{
+    display: none;
+    width: 60%;
+    padding: 12px 0;
+    margin: 16px 0;
+    border: thin solid #9EB9DB;
+    cursor: pointer;
+}
+
+.ammeter.hor {
+    background-position: -8px -9px;
+}
+
+.ammeter.vert {
+    background-position: -107px -8px;
+}
+
+.voltmeter.hor {
+    background-position: -208px -9px;
+}
+
+.voltmeter.vert {
+    background-position: -308px -9px;
+}
+
+.wire.hor {
+    background-position: -408px -16px;
+}
+
+.wire.vert {
+    background-position: -501px -8px;
+}
+
+.resistor.hor {
+    background-position: -6px -112px;
+}
+
+.resistor.vert {
+    background-position: -109px -107px;
+}
+
+.circuit-container {
+    position: fixed;
+    display: block;
+    width: 706px;
+    height: 274px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.circuit {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url('../images/circuit/circuit.png') no-repeat;
+    background-size: 680px 274px;
+    z-index: 3;
+}
+
+.circuit-hotspot{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 6;
+}
+
+.circuit-hotspot.a {
+    left: 400px;
+    top: 132px;
+}
+
+.circuit-hotspot.b {
+   left: 470px;
+    top: 55px;
+}
+
+.circuit-hotspot.c {
+    left: 75px;
+    top: 57px;
+}
+
+.circuit-hotspot.d {
+    left: 112px;
+    top: 13px;
+    width: 54px;
+    height: 40px;
+}
+
+.circuit-hotspot.e {
+    left: 152px;
+    top: 57px;
+}
+
+.circuit-hotspot.f {
+    left: 270px;
+    top: 17px;
+}
+
+.circuit-hotspot.g {
+    left: 538px;
+    top: 132px;
+}
+
+
+.circuit-connection {
+    position: absolute;
+    display: inline-block;
+    width: 84px;
+    height: 84px;
+    z-index:3;
+}
+.circuit-connection.ammeter.vert, .circuit-connection.voltmeter.vert, .circuit-connection.ammeter.hor, .circuit-connection.voltmeter.hor {
+    font-size: .7em;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 7em;
+    text-indent: -2px;
+}
+.circuit-connection.resistor .resistor_value {
+    display: inline-block;
+    padding-top: 60px;
+    font-size: .7em;
+    font-family: "Courier New", Courier, monospace;
+}
+.circuit-connection.resistor.vert .resistor_value {
+    width: 84px;
+    padding-top: 30px;
+    text-align: center;
+    line-height: 5.1em;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+}
+.circuit-connection.a {
+    left: 372px;
+    top: 115px;
+}
+.circuit-connection.b {
+    left: 450px;
+    top: 38px;
+}
+.circuit-connection.c {
+    left: 58px;
+    top: 38px;
+}
+.circuit-connection.d {
+    left: 100px;
+    top: -1px;
+    z-index:2;
+}
+.circuit-connection.e {
+    left: 140px;
+    top: 38px;
+}
+.circuit-connection.f {
+    left: 248px;
+    top: -1px;
+}
+.circuit-connection.g {
+    left: 522px;
+    top: 115px;
+}
+.circuit-connection.h {
+    left: 595px;
+    top: 115px;
+}
+.resistor-controls {
+    position:absolute;
+    width:68px;
+    text-align: center;
+}
+.resistor-controls.vert {
+    width: 22px;
+    top: 9px;
+    text-align: left;
+}
+.resistor-controls.a {
+    left:82px;
+    top:20px;
+}
+.resistor-controls.b, .resistor-controls.c, .resistor-controls.g {
+    left:-28px;
+}
+.resistor-controls.b{
+    top:0;
+}
+.resistor-controls.d, .resistor-controls.f {
+    top:-25px;
+    left:8px;
+}
+.resistor-controls.e, .resistor-controls.h {
+    left: 86px;
+}
+.resistor-button {
+    display:inline-block;
+    width:80px;
+    height:26px;
+    padding:0;
+}
+.resistor-button.down{
+    margin-top: 16px;
+}
+.resistor-controls.hor .resistor-button.down{
+    margin-top: 0;
+    margin-left: 0px;
+}
+.variable_resistor_body {
+    display: none;
+    position: relative;
+    width: 535px;
+    height: 300px;
+    margin-top: 30px;
+    font-size: 1.6em;
+    line-height: 2.9em;
+    overflow:hidden;
+    background: url('../images/circuit/variable_resistor.png') no-repeat;
+    background-size: 535px 238px;
+}
+.variable_resistor_terminal {
+    display: block;
+    margin-left: -450px;
+    cursor: pointer;
+}
+
+/*Edited by Ning & Yiran*/
+iframe{
+    border:0px;    
+}
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #666666; border-radius: 30px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 16px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    border-radius: 30px;
+    box-shadow: 0px 15px 0px rgba(0,0,0,0.08) inset;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 15px;
+    background-color: #6BB2ED; color: #FFFFFF;
+    border-radius: 30px 0 0 30px;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 15px;
+    background-color: #FFFFFF; color: #666666;
+    text-align: right;
+    border-radius: 0 30px 30px 0;
+}
+.onoffswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    border: 2px solid #666666; border-radius: 30px;
+    position: absolute; top: 0; bottom: 0; right: 56px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+    background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%); 
+    background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%); 
+    background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%); 
+    background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+    box-shadow: 0 1px 1px white inset;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+ .zoom {
+  -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+          cursor: default;
+    }
+ .zoom:hover {
+      -webkit-transform: scale(2,2);
+              transform: scale(2,2);
+}
