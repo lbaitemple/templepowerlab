@@ -1,14 +1,20 @@
 # templepowerlab
 temple powerlab
 
+## git clone
+```
+cd ~
+git clone https://github.com/lbaitemple/templepowerlab/
+```
+
 
 ## create duckdns ip
 ```
 cd 
 mkdir duckdns
 cd duckdns
-wget https://raw.githubusercontent.com/lbaitemple/templepowerlab/master/duck.sh?token=AEOCCLRJWR3DJGYFPI3OFQ27LQNWU
-wget https://raw.githubusercontent.com/lbaitemple/templepowerlab/master/duck_daemon.sh?token=AEOCCLVRFPH7BNA7NQTQWR27LQNX2
+cp ~/templepowerlab/duck.sh .
+cp ~/templepowerlab/duck_daemon.sh .
 chmod 700 duck.sh
 chmod +x duck_daemon.sh
 sudo chown root duck_daemon.sh
