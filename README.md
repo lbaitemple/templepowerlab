@@ -32,3 +32,20 @@ sudo /etc/rc2.d/S10duckdns
 cd ~/templepowerlab
 docker-compose up
 ```
+
+
+#### other important docker commands
+##### Stop all running containers
+```
+docker stop $(docker ps -aq)
+```
+
+##### Remove all containers
+```
+docker rm $(docker ps -aq)
+```
+
+##### Stop all running containers
+```
+docker rmi $(docker images -q)
+```
