@@ -53,3 +53,27 @@ docker rmi $(docker images -q)
 ```
 sudo docker restart
 ```
+
+### create let's encrypt ssl
+```
+sudo docker ps -a
+```
+find container id
+```
+sudo docker exec -it $(sudo docker ps -q)  /bin/bash
+```
+Now, you can add
+```
+apt-get install software-properties-common
+add-apt-repository ppa:certbot/certbot
+add-apt-repository universe
+apt update
+apt-get install python-certbot-apache -y
+certbot --apache -d nameurl
+```
+After enter your email address, you can
+```
+a
+y
+2
+```
